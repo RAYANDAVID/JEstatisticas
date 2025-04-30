@@ -57,7 +57,7 @@ public class App {
 
         /* Considerando os números 30,50,80,90 Digite o valor da média aritmética simples?  */
         //gabarito: 62,5
-        
+
         double media = Double.parseDouble(JOptionPane.showInputDialog("Considerando os números 30,50,80,90 \nDigite o valor da média aritmética simples?"));
         if (media ==62.5) {
             JOptionPane.showMessageDialog(null,"Certa Resposta");
@@ -81,7 +81,7 @@ public class App {
         //mediana
 
         String nome = JOptionPane.showInputDialog("Qual a medida de tendência central que mostra o centro da amostra");
-        if (nome.equals ("mediana")) {
+        if (nome.equalsIgnoreCase ("mediana")) {
             JOptionPane.showMessageDialog(null,"Certa Resposta");
 
         } else {
