@@ -11,7 +11,7 @@ public class App {
         //Variável que receba a interação do jogo
         //Random
         //Switch
-        //for, do while e Whilhe 
+        //for, do while e While 
 
         String[] espacoAmostral = {"Cara","Coroa"};
 
