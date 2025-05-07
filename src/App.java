@@ -26,12 +26,14 @@ public class App {
         int cont5 = 0;
         int cont6 = 0;
         String mensagem ="Quer lançar o dado?";
+       
         //sorteio
 
         Random random = new Random();
                 
         //loop de lançamento
-        while (true) {  
+        while (true) { 
+           
             int opcao = JOptionPane.showConfirmDialog(null, mensagem, "Lançando dado",JOptionPane.YES_NO_OPTION);
             if (opcao!= JOptionPane.YES_OPTION) {
                 
