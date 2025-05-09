@@ -11,6 +11,8 @@ public class App {
         int totalServicos = 0;
         double valorTotal = 0.0;
 
+        double[] areasJardim = new double[100];
+
 
         String nome, endereco, cont, nomeJardim;
         do {
@@ -20,6 +22,7 @@ public class App {
             double comp = Double.parseDouble(JOptionPane.showInputDialog("Qual o comprimento (em metros): "));
             double area = largura * comp;
 
+            areasJardim[totalJardins] = area;// continuar daqui(vetores)
             totalArea += area;
             totalJardins++;
 
