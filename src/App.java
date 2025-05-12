@@ -15,7 +15,7 @@ public class App {
         double[] valoresServicos = new double[3];
         String[] nomesServicos = {"Manutenção Regular", "Paisagismo", "Irrigação Automática"};
 
-        String nomeJardim, endereco, cont, escolhaServico;
+        String nomeJardim, endereco, cont, escolhaServico = null;
 
         do {
             nomeJardim = JOptionPane.showInputDialog("Digite o nome do jardim:");
@@ -130,7 +130,7 @@ public class App {
         return largura * comprimento;
     }
 
-    // Procedimento para exibir dados do cliente
+    //Função para exibir dados do cliente
     public static void exibirDadosCliente(String nome, String endereco, double largura, double comprimento, double area) {
         JOptionPane.showMessageDialog(null,
             "Nome do Jardim: " + nome +
