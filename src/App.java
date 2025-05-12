@@ -13,17 +13,20 @@ public class App {
         double valorTotal = 0.0;
 
         double[] areasJardim = new double[100];
-        double[] valoresServicos = new double[3];  // Vetor para armazenar os valores dos serviços
-        String[] nomesServicos = {"Manutenção Regular", "Paisagismo", "Irrigação Automática"};
+        double[] valoresServicos = new double[3]; // Vetor para armazenar os valores dos serviços
+        String[] nomesServicos = { "Manutenção Regular", "Paisagismo", "Irrigação Automática" };
 
         String nomeJardim, endereco, cont, escolhaServico = null;
         do {
             nomeJardim = JOptionPane.showInputDialog("Digite o nome do jardim: ");
             endereco = JOptionPane.showInputDialog("Digite o endereço do jardim: ");
-            
+
             double largura = Double.parseDouble(JOptionPane.showInputDialog("Qual a largura do seu jardim (em metros): "));
             double comprimento = Double.parseDouble(JOptionPane.showInputDialog("Qual o comprimento (em metros): "));
-            double area = largura * comprimento;
+
+            // Chamando a função para calcular a área
+            double area = calcularArea(largura, comprimento);
+
 
             areasJardim[totalJardins] = area;
             totalArea += area;
@@ -34,12 +37,13 @@ public class App {
             }
 
             JOptionPane.showMessageDialog(null,
-                    "Nome do Jardim: " + nomeJardim + "\nEndereço: " + endereco + "\nLargura: " + largura + 
-                    "\nComprimento: " + comprimento + "\nÁrea do Jardim: " + area);
+                    "Nome do Jardim: " + nomeJardim + "\nEndereço: " + endereco + "\nLargura: " + largura +
+                            "\nComprimento: " + comprimento + "\nÁrea do Jardim: " + area);
 
             // Armazenando os valores dos serviços escolhidos
             do {
-                int op = Integer.parseInt(JOptionPane.showInputDialog("Escolha um serviço para o jardim: \n1-Manutenção Regular \n2-Paisagismo \n3-Irrigação Automática"));
+                int op = Integer.parseInt(JOptionPane.showInputDialog(
+                        "Escolha um serviço para o jardim: \n1-Manutenção Regular \n2-Paisagismo \n3-Irrigação Automática"));
                 switch (op) {
                     case 1:
                         JOptionPane.showMessageDialog(null, "Serviço de Manutenção Regular escolhido.");
@@ -58,13 +62,14 @@ public class App {
                         continue;
                 }
 
-                escolhaServico = JOptionPane.showInputDialog("Deseja escolher outro serviço para este jardim? \nS-Sim ou N-Não");
+                escolhaServico = JOptionPane
+                        .showInputDialog("Deseja escolher outro serviço para este jardim? \nS-Sim ou N-Não");
             } while (escolhaServico.equalsIgnoreCase("S"));
 
             cont = JOptionPane.showInputDialog("Deseja cadastrar outro jardim? \nS-Sim ou N-Não");
         } while (cont.equalsIgnoreCase("S"));
 
-        // Ordenando os serviços 
+        // Ordenando os serviços
         for (int i = 0; i < valoresServicos.length - 1; i++) {
             for (int j = i + 1; j < valoresServicos.length; j++) {
                 if (valoresServicos[i] > valoresServicos[j]) {
@@ -107,11 +112,11 @@ public class App {
 
         double desconto = 0.0;
         if (totalServicos == 1) {
-            desconto = valorTotal * 0.05;  // 5% de desconto
+            desconto = valorTotal * 0.05; // 5% de desconto
         } else if (totalServicos == 2) {
-            desconto = valorTotal * 0.10;  // 10% de desconto
+            desconto = valorTotal * 0.10; // 10% de desconto
         } else if (totalServicos >= 3) {
-            desconto = valorTotal * 0.15;  // 15% de desconto
+            desconto = valorTotal * 0.15; // 15% de desconto
         }
 
         double valorComDesconto = valorTotal - desconto;
@@ -124,11 +129,16 @@ public class App {
 
         JOptionPane.showMessageDialog(null,
                 "Total de jardins cadastrados: " + totalJardins + "\nTotal de jardins grandes: " + jardinsGrandes +
-                "\nMédia da área dos jardins: " + mediaArea + "\n" + modaStr +
-                "\nValor Total: R$ " + valorTotal + "\nDesconto: R$ " + desconto + "\nValor com Desconto: R$ " + valorComDesconto +
-                "\n\n" + servicosOrdenados.toString());
+                        "\nMédia da área dos jardins: " + mediaArea + "\n" + modaStr +
+                        "\nValor Total: R$ " + valorTotal + "\nDesconto: R$ " + desconto + "\nValor com Desconto: R$ "
+                        + valorComDesconto +
+                        "\n\n" + servicosOrdenados.toString());
 
         JOptionPane.showMessageDialog(null, "Encerrando Sistema");
     }
-}
 
+    // Função para calcular a área do jardim
+    public static double calcularArea(double largura, double comprimento) {
+        return largura * comprimento;
+    }
+}
