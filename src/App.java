@@ -27,6 +27,8 @@ public class App {
             // Chamando a função para calcular a área
             double area = calcularArea(largura, comprimento);
 
+            dadosClinte(nomeJardim, endereco, largura, comprimento, area);
+
 
             areasJardim[totalJardins] = area;
             totalArea += area;
@@ -73,11 +75,10 @@ public class App {
         for (int i = 0; i < valoresServicos.length - 1; i++) {
             for (int j = i + 1; j < valoresServicos.length; j++) {
                 if (valoresServicos[i] > valoresServicos[j]) {
-                    // Trocar os valores dos serviços
                     double tempValor = valoresServicos[i];
                     valoresServicos[i] = valoresServicos[j];
                     valoresServicos[j] = tempValor;
-                    // Trocar os nomes dos serviços correspondentes
+                  
                     String tempNome = nomesServicos[i];
                     nomesServicos[i] = nomesServicos[j];
                     nomesServicos[j] = tempNome;
@@ -85,7 +86,8 @@ public class App {
             }
         }
 
-        double mediaArea = totalArea / totalJardins;
+         // Chamada da função para calcular a média
+         double mediaArea = calcularMedia(areasJardim, totalJardins);
 
         // Cálculo da Moda das Áreas dos Jardins
         Map<Double, Integer> frequencia = new HashMap<>();
@@ -140,5 +142,22 @@ public class App {
     // Função para calcular a área do jardim
     public static double calcularArea(double largura, double comprimento) {
         return largura * comprimento;
+    }
+
+    public static void dadosClinte(String nomeJardim, String endereco, double largura, double comprimento, double area){
+        JOptionPane.showMessageDialog(null,
+            "Nome do Jardim: " + nomeJardim +
+            "\nEndereço: " + endereco +
+            "\nLargura: " + largura +
+            "\nComprimento: " + comprimento +
+            "\nÁrea do Jardim: " + area + " m²");
+    }
+
+    public static double calcularMedia(double[] vetor, int total){
+        double soma = 0;
+        for (int i = 0; i < total; i++){
+            soma += vetor[i];
+        } 
+        return soma / total;
     }
 }
