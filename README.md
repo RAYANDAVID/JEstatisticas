@@ -1,71 +1,109 @@
-Sistema de Serviços para Jardins
-Este projeto em Java simula o cadastro de jardins, calcula suas áreas, permite a seleção de serviços e fornece estatísticas finais. Utiliza a biblioteca JOptionPane para interação com o usuário e aplica conceitos de entrada/saída, estruturas de controle, vetores, estatísticas e desconto por fidelidade.
+#  Sistema de Serviços para Jardins – Projeto Java
 
-Estrutura do Projeto
-#Nível 1 – Entrada e Saída
--Mensagem de Boas-Vindas
+Este repositório apresenta um sistema em Java para cadastro e gerenciamento de serviços prestados a jardins. O projeto está dividido em branches por níveis de complexidade, do mais simples ao mais avançado. Abaixo estão descritos os níveis até o **Nível 4**, com explicações detalhadas de cada passo implementado.
 
-JOptionPane.showMessageDialog(null, "Óla jardim!");
+---
 
-Exibe uma saudação ao usuário ao iniciar o sistema.
+##  Estrutura por Branch (até o Nível 4)
 
--Cadastro de Cliente
+---
 
-Recebe nomeJardim e endereço via JOptionPane.showInputDialog.
+###  `logica-aula7-ex1` – Nível 1: Entrada e Saída
 
--Cálculo da Área
+#### 1. Exibição de Boas-Vindas
+- Mensagem com `JOptionPane.showMessageDialog` dando as boas-vindas ao usuário:
+  ```java
+  JOptionPane.showMessageDialog(null, "Óla jardim!");
+  ```
 
-Recebe largura e comprimento, calcula área = largura \* comprimento.
+#### 2. Entrada de Dados Básicos
+- O sistema solicita ao usuário:
+  - Nome do jardim
+  - Endereço
+  - Largura (em metros)
+  - Comprimento (em metros)
+  
+#### 3. Cálculo da Área do Jardim
+- A área é calculada com:
+  ```java
+  double area = largura * comp;
+  ```
 
-#Nível 2 – Estrutura de Seleção
--Classificação do Jardim
+#### 4. Exibição dos Dados Inseridos
+- Após o cálculo, os dados são apresentados ao usuário via `JOptionPane`.
 
-Jardins com área > 100 m² são considerados grandes.
+---
 
-Contador jardinsGrandes é incrementado conforme necessário.
+###  `logica-aula7-ex2` – Nível 2: Estrutura de Seleção
 
-Escolha do Tipo de Serviço (switch/case)
+#### 1. Classificação do Jardim por Tamanho
+- Jardins com área superior a 100 m² são classificados como **grandes**.
+  ```java
+  if (area > 100.0) {
+      jardinsGrandes++;
+  }
+  ```
 
-1: Manutenção Regular (R$100)
+#### 2. Escolha do Tipo de Serviço
+- O usuário escolhe serviços por meio de um menu com `switch/case`:
+  - **1**: Manutenção Regular → R$100
+  - **2**: Paisagismo → R$150
+  - **3**: Irrigação Automática → R$200
 
-2: Paisagismo (R$150)
+#### 3. Acúmulo do Valor Total
+- A cada serviço, o valor correspondente é somado ao total:
+  ```java
+  valorTotal += 100; // ou 150, ou 200 dependendo da opção
+  ```
 
-3: Irrigação Automática (R$200)
+#### 4. Validação de Opções Inválidas
+- Caso o usuário digite uma opção inválida, o sistema solicita nova entrada.
 
-Serviços são somados ao total (valorTotal e totalServicos).
+---
 
--Desconto por Fidelidade
+###  `logica-aula7-ex3` – Nível 3: Estrutura de Repetição
 
-Aplicado com base no número total de serviços:
+#### 1. Cadastro de Múltiplos Jardins
+- Utiliza `do...while` para repetir o cadastro enquanto o usuário desejar:
+  ```java
+  do {
+      // Cadastro
+  } while (cont.equalsIgnoreCase("S"));
+  ```
 
-1 serviço → 5%
+#### 2. Cadastro de Vários Serviços por Jardim
+- Para cada jardim, o usuário pode cadastrar mais de um serviço:
+  ```java
+  do {
+      // Escolha de serviço
+  } while (escolhaServico.equalsIgnoreCase("S"));
+  ```
 
-2 serviços → 10%
+#### 3. Cálculo da Média da Área
+- A média é obtida dividindo a soma das áreas pelo número de jardins:
+  ```java
+  double mediaArea = totalArea / totalJardins;
+  ```
 
-3 ou mais → 15%
+#### 4. Contagem de Jardins Grandes
+- Atualizado automaticamente dentro do laço de cadastro de jardins.
 
-#Nível 3 – Estrutura de Repetição
-Cadastro de Múltiplos Serviços
+---
 
-Laço do...while permite adicionar mais de um serviço por jardim.
+###  `logica-aula7-ex4` – Nível 4: Vetores Básicos
 
-Média da Área
+#### 1. Armazenamento das Áreas em Vetor
+- Um vetor `areasJardim[]` guarda a área de cada jardim:
+  ```java
+  double[] areasJardim = new double[100];
+  ```
 
-mediaArea = totalArea / totalJardins.
+#### 2. Cálculo da Moda
+- Usa um `HashMap` para contar a frequência de cada área.
+- Identifica o valor mais frequente (moda), e em caso de empate, lista todos:
+  ```java
+  Map<Double, Integer> frequencia = new HashMap<>();
+  ```
 
-Contagem de Jardins Grandes
-
-Verificado dentro do cadastro de jardins com if (area > 100.0).
-
-#Nível 4 – Vetores Básicos
-Armazenamento das Áreas
-
-Vetor areasJardim[100] guarda as áreas de cada jardim.
-
--Cálculo da Moda
-
-Um Map<Double, Integer> conta as ocorrências de cada área.
-
-A moda é o valor mais frequente.
-
-Pode haver empate (mais de uma moda).
+#### 3. Exibição da Moda
+- Resultado exibido com tratamento para moda única ou múltipla.
