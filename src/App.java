@@ -1,3 +1,10 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.swing.JOptionPane;
 
 public class App {
@@ -22,7 +29,7 @@ public class App {
             double comp = Double.parseDouble(JOptionPane.showInputDialog("Qual o comprimento (em metros): "));
             double area = largura * comp;
 
-            areasJardim[totalJardins] = area;// continuar daqui(vetores)
+            areasJardim[totalJardins] = area;
             totalArea += area;
             totalJardins++;
 
@@ -79,11 +86,28 @@ public class App {
             desconto = valorTotal * 0.15;  // 15% de desconto
         }
 
+        //Moda
+        Map<Double, Integer> frequencia = new HashMap<>();
+        for(int i = 0; i < totalJardins; i++) {
+            double area = areasJardim[i];
+            frequencia.put(areasJardim[i], frequencia.getOrDefault(areasJardim[i], 0) + 1);
+        }
+
+        int macfreq = Collections.max(frequencia.values());
+        
+        List<Double> modas = new ArrayList<>();
+        for (Map.Entry<Double, Integer> entry : frequencia.entrySet()) {
+            if (entry.getValue() == macfreq) {
+                modas.add(entry.getKey());
+            }
+        }
+        String modaStr = modas.size() == 1 ?  "Moda da área dos jardins: " + modas.get(0) : "Modas da área dos jardins: " + modas + " m² (empate)";    
+
         double valorComDesconto = valorTotal - desconto;
 
         JOptionPane.showMessageDialog(null,
-                "Total de jardins cadastrados: " + totalJardins + "\nTotal de jardins grandes (área > 100m²): " + jardinsGrandes +
-                "\nMédia da área dos jardins: " + mediaArea + "\nTotal de serviços escolhidos: " + totalServicos +
+                "Total de jardins cadastrados: " + totalJardins + "\nTotal de jardins grandes: " + jardinsGrandes +
+                "\nMédia da área dos jardins: " + mediaArea + "\n" + modaStr + "\nTotal de serviços escolhidos: " + totalServicos +
                 "\nValor Total: R$ " + valorTotal + "\nDesconto: R$ " + desconto + "\nValor com Desconto: R$ " + valorComDesconto);
 
         JOptionPane.showMessageDialog(null, "Encerrando Sistema");
