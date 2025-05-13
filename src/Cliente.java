@@ -10,7 +10,7 @@ public class Cliente {
     }
 
     public void exibir(){
-        JOptionPane.showMessageDialog(null,"CLiente: "+nome);
+        JOptionPane.showMessageDialog(null,"Cliente: "+nome);
         JOptionPane.showMessageDialog(null,"Endereço: "+endereco);
     }
 
